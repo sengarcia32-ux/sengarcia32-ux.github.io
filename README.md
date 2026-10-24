@@ -15,15 +15,16 @@ Static na online store sa GitHub Pages, may hiwalay na admin panel. Firebase ang
 
 Project: **game-store-webpage** (Firestore sa asia-east1) · Web app: `sen-store-web`
 
-Tapos na gamit ang Firebase CLI:
+Tapos na:
 - [x] Web app at config (`js/firebase-config.js`)
 - [x] Firestore security rules: `firebase deploy --only firestore:rules`
+- [x] Email/Password sign-in: naka-enable
+- [x] Authorized domain: `sengarcia32-ux.github.io`
 
-Sa Firebase Console (<https://console.firebase.google.com/project/game-store-webpage>):
-1. **Build → Authentication → Get started → Sign-in method → Email/Password → Enable.**
-2. **Authentication → Users → Add user**: ilagay ang email at password ng admin.
-3. **Authentication → Settings → Authorized domains → Add domain**: `sengarcia32-ux.github.io`
-4. Gawing admin ang user: mag-login sa `/admin/` at kopyahin ang UID na lalabas. Tapos sa **Firestore → Data**, gumawa ng collection `admins` na may document na ang ID ay ang UID, at may field na `email` (string).
+Pagdagdag ng admin:
+1. Sa Firebase Console (<https://console.firebase.google.com/project/game-store-webpage/authentication/users>): **Add user**, tapos ilagay ang email at password ng admin.
+2. Mag-login sa `/admin/` at kopyahin ang UID na lalabas.
+3. Sa **Firestore → Data**, gumawa ng document sa collection `admins` na ang Document ID ay ang UID, at may field na `email` (string).
 
 ### 2. GitHub Pages
 
