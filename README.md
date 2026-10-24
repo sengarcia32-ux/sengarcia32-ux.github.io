@@ -51,4 +51,4 @@ Kailangan ng server; hindi gagana kung bubuksan lang ang `index.html` nang direk
 ## Notes
 
 - **Public ang repo**, kaya huwag maglalagay ng passwords o secret keys sa code. OK lang na public ang Firebase config; ang `firestore.rules` ang nagpoprotekta sa data.
-- **Product images**: kailangan na ng Blaze plan (may libreng quota pero kailangan ng card) para sa Firebase Storage ng bagong projects. Pwedeng alternatibo ang `images/` folder dito sa repo, o image URL galing sa ibang host.
+- **Product images**: hindi Firebase Storage ang gamit, dahil kailangan noon ng Blaze plan. Sa admin, pinapaliit muna ang picture (max 800px, JPEG) bago i-save, tapos nakalagay ito mismo sa product document (`imageUrl`). Bagay ito sa maliit na store. Kung dadami na nang husto ang products, lumipat sa Firebase Storage o sa ibang image host.

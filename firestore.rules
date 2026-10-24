@@ -9,10 +9,18 @@ service cloud.firestore {
         && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
     }
 
+    function validProduct(p) {
+      return p.name is string && p.name.size() > 0 && p.name.size() <= 120
+        && p.price is number && p.price >= 0
+        && p.stock is int && p.stock >= 0
+        && p.active is bool;
+    }
+
     // Products: lahat makakabasa ng active products; admin lang ang makaka-edit.
     match /products/{productId} {
       allow read: if resource.data.active == true || isAdmin();
-      allow write: if isAdmin();
+      allow create, update: if isAdmin() && validProduct(request.resource.data);
+      allow delete: if isAdmin();
     }
 
     // Orders: customers makakapag-order, pero hindi nila mababasa o mababago pagkatapos.

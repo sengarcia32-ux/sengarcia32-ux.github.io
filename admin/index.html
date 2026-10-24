@@ -40,13 +40,54 @@
 
     <section id="dash-view" class="panel wide" hidden>
       <header class="dash-header">
-        <h1>Dashboard</h1>
-        <button id="logout" type="button" class="secondary">Mag-logout</button>
+        <h1>Products</h1>
+        <div class="dash-actions">
+          <button id="add-product" type="button">+ Magdagdag</button>
+          <button id="logout" type="button" class="secondary">Mag-logout</button>
+        </div>
       </header>
-      <p>Naka-login bilang <strong id="who"></strong></p>
-      <h2>Setup check</h2>
-      <ul id="checks" class="checks"></ul>
+      <p class="muted">Naka-login bilang <strong id="who"></strong></p>
+      <p id="products-status" class="muted">Naglo-load ng products…</p>
+      <ul id="product-list" class="product-list"></ul>
     </section>
   </main>
+
+  <dialog id="product-dialog">
+    <form id="product-form">
+      <h2 id="product-form-title">Bagong product</h2>
+      <label>Pangalan
+        <input name="name" required maxlength="120">
+      </label>
+      <div class="field-row">
+        <label>Presyo (₱)
+          <input name="price" type="number" min="0" step="0.01" required>
+        </label>
+        <label>Stock
+          <input name="stock" type="number" min="0" step="1" required>
+        </label>
+      </div>
+      <label>Description
+        <textarea name="description" rows="3" maxlength="2000"></textarea>
+      </label>
+      <div class="image-field">
+        <span class="field-label">Picture</span>
+        <img id="image-preview" alt="Preview ng picture" hidden>
+        <div class="image-actions">
+          <label class="file-button">Pumili ng picture
+            <input id="image-input" type="file" accept="image/*" hidden>
+          </label>
+          <button id="image-remove" type="button" class="secondary" hidden>Alisin</button>
+        </div>
+      </div>
+      <label class="checkbox">
+        <input name="active" type="checkbox"> Ipakita sa store
+      </label>
+      <p id="product-error" class="error" role="alert"></p>
+      <div class="dialog-actions">
+        <button id="product-cancel" type="button" class="secondary">Cancel</button>
+        <button id="product-save" type="submit">I-save</button>
+      </div>
+    </form>
+  </dialog>
 </body>
 </html>

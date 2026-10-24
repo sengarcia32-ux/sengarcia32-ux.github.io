@@ -26,6 +26,13 @@ function productCard(p) {
   price.className = "price";
   price.textContent = peso.format(p.price ?? 0);
   card.append(name, price);
+  if (!p.stock) {
+    card.classList.add("sold-out");
+    const tag = document.createElement("p");
+    tag.className = "stock";
+    tag.textContent = "Ubos na";
+    card.append(tag);
+  }
   return card;
 }
 
@@ -36,7 +43,10 @@ async function loadProducts() {
     const snap = await getDocs(query(collection(db, "products"), where("active", "==", true)));
     if (snap.empty) return showNotice("Wala pang products.");
     notice.hidden = true;
-    grid.replaceChildren(...snap.docs.map((d) => productCard(d.data())));
+    // Newest first. Sorted here because where + orderBy would need a composite index.
+    const products = snap.docs.map((d) => d.data())
+      .sort((a, b) => (b.createdAt?.toMillis() ?? 0) - (a.createdAt?.toMillis() ?? 0));
+    grid.replaceChildren(...products.map(productCard));
   } catch (err) {
     console.error(err);
     showNotice("Hindi ma-load ang products. Subukan ulit mamaya.");
