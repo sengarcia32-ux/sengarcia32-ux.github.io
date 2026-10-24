@@ -1,0 +1,115 @@
+:root {
+  --bg: #f1f5f9;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --accent: #4f46e5;
+  --ok: #15803d;
+  --fail: #b91c1c;
+  --radius: 10px;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --border: #334155;
+    --accent: #818cf8;
+    --ok: #4ade80;
+    --fail: #f87171;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.admin {
+  display: grid;
+  justify-items: center;
+  padding: 48px 16px;
+}
+
+.panel {
+  width: 100%;
+  max-width: 400px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.panel.wide { max-width: 900px; }
+
+h1 { margin: 0 0 16px; font-size: 1.5rem; }
+h2 { font-size: 1.1rem; margin-top: 24px; }
+
+form { display: grid; gap: 14px; }
+
+label {
+  display: grid;
+  gap: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+input {
+  font: inherit;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.dash-header h1 { margin: 0; }
+
+code {
+  font-size: 0.875rem;
+  background: var(--bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  word-break: break-all;
+}
+
+.muted { color: var(--muted); }
+.error { color: var(--fail); margin: 0; min-height: 1.5em; }
+
+.checks { list-style: none; padding: 0; }
+.checks li::before { margin-right: 8px; font-weight: 700; }
+.checks .ok::before { content: "✓"; color: var(--ok); }
+.checks .fail::before { content: "✗"; color: var(--fail); }

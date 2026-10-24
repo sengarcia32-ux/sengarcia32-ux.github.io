@@ -1,0 +1,33 @@
+// I-paste ito sa Firebase Console → Firestore Database → Rules, tapos i-Publish.
+// Draft pa ito; aayusin natin ang orders rules kapag tapos na ang checkout.
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Products: lahat makakabasa ng active products; admin lang ang makaka-edit.
+    match /products/{productId} {
+      allow read: if resource.data.active == true || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // Orders: customers makakapag-order, pero hindi nila mababasa o mababago pagkatapos.
+    match /orders/{orderId} {
+      allow create: if request.resource.data.status == "pending"
+        && request.resource.data.items is list
+        && request.resource.data.items.size() > 0
+        && request.resource.data.total is number;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Admins: sa Firebase Console lang dinadagdag, hindi sa website.
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+  }
+}

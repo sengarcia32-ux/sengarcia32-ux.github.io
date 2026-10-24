@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fil">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin · Sen Store</title>
+  <link rel="stylesheet" href="admin.css">
+  <script type="module" src="admin.js"></script>
+</head>
+<body>
+  <main class="admin">
+    <p id="loading" class="muted">Naglo-load…</p>
+
+    <p id="setup-notice" class="panel" hidden>
+      Hindi pa naka-setup ang Firebase. Ilagay muna ang config sa <code>js/firebase-config.js</code> (tingnan ang README.md).
+    </p>
+
+    <section id="login-view" class="panel" hidden>
+      <h1>Admin Login</h1>
+      <form id="login-form">
+        <label>Email
+          <input type="email" name="email" autocomplete="username" required>
+        </label>
+        <label>Password
+          <input type="password" name="password" autocomplete="current-password" required>
+        </label>
+        <button type="submit">Mag-login</button>
+        <p id="login-error" class="error" role="alert"></p>
+      </form>
+    </section>
+
+    <section id="denied-view" class="panel" hidden>
+      <h1>Walang admin access</h1>
+      <p id="denied-reason"></p>
+      <p>Para gawing admin ang account na ito, gumawa ng document sa Firestore: collection <code>admins</code>, Document ID:</p>
+      <p><code id="denied-uid"></code></p>
+      <button id="denied-logout" type="button" class="secondary">Mag-logout</button>
+    </section>
+
+    <section id="dash-view" class="panel wide" hidden>
+      <header class="dash-header">
+        <h1>Dashboard</h1>
+        <button id="logout" type="button" class="secondary">Mag-logout</button>
+      </header>
+      <p>Naka-login bilang <strong id="who"></strong></p>
+      <h2>Setup check</h2>
+      <ul id="checks" class="checks"></ul>
+    </section>
+  </main>
+</body>
+</html>
