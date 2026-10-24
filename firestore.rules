@@ -1,4 +1,4 @@
-// I-paste ito sa Firebase Console → Firestore Database → Rules, tapos i-Publish.
+// I-deploy gamit ang: firebase deploy --only firestore:rules
 // Draft pa ito; aayusin natin ang orders rules kapag tapos na ang checkout.
 rules_version = '2';
 service cloud.firestore {

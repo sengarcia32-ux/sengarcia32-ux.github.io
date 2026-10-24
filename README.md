@@ -11,22 +11,19 @@ Static na online store sa GitHub Pages, may hiwalay na admin panel. Firebase ang
 
 ## Setup checklist
 
-### 1. Firebase project
+### 1. Firebase
 
-1. Pumunta sa <https://console.firebase.google.com> → **Create a project**. Pwedeng i-off ang Google Analytics.
-2. Sa Project Overview → **Add app** → **Web** (`</>`). Huwag i-check ang "Firebase Hosting". Kopyahin ang `firebaseConfig` papunta sa `js/firebase-config.js`.
-3. **Build → Authentication → Get started → Sign-in method → Email/Password → Enable.**
-4. **Authentication → Users → Add user**: ilagay ang email at password ng admin.
-5. **Build → Firestore Database → Create database**
-   - Edition: **Standard** (kung tatanungin)
-   - Location: **asia-southeast1 (Singapore)**. Pinakamalapit ito sa PH at hindi na mapapalitan pagkatapos.
-   - **Start in production mode**
-6. **Firestore → Rules**: i-paste ang laman ng `firestore.rules` → **Publish**.
-7. **Firestore → Data → Start collection**
-   - Collection ID: `admins`
-   - Document ID: ang **UID** ng admin user (makikita sa Authentication → Users)
-   - Field: `email` (string) = email ng admin
-8. **Authentication → Settings → Authorized domains → Add domain**: `sengarcia32-ux.github.io`
+Project: **game-store-webpage** (Firestore sa asia-east1) · Web app: `sen-store-web`
+
+Tapos na gamit ang Firebase CLI:
+- [x] Web app at config (`js/firebase-config.js`)
+- [x] Firestore security rules: `firebase deploy --only firestore:rules`
+
+Sa Firebase Console (<https://console.firebase.google.com/project/game-store-webpage>):
+1. **Build → Authentication → Get started → Sign-in method → Email/Password → Enable.**
+2. **Authentication → Users → Add user**: ilagay ang email at password ng admin.
+3. **Authentication → Settings → Authorized domains → Add domain**: `sengarcia32-ux.github.io`
+4. Gawing admin ang user: mag-login sa `/admin/` at kopyahin ang UID na lalabas. Tapos sa **Firestore → Data**, gumawa ng collection `admins` na may document na ang ID ay ang UID, at may field na `email` (string).
 
 ### 2. GitHub Pages
 

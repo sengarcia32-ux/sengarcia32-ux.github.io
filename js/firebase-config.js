@@ -1,13 +1,13 @@
-// Kopyahin dito ang config mula sa Firebase Console:
-// Project settings → General → Your apps → Web app → "SDK setup and configuration" → Config
+// Config ng Firebase web app na "sen-store-web" (project: game-store-webpage).
+// Makukuha ulit gamit ang: firebase apps:sdkconfig WEB 1:324511328721:web:5e756c76280022ae9a58f0
 //
 // OK lang na public ito. Ang Firestore rules (firestore.rules) ang nagpoprotekta sa data,
 // hindi ang pagtatago ng config.
 export const firebaseConfig = {
-  apiKey: "PALITAN_ITO",
-  authDomain: "PALITAN_ITO.firebaseapp.com",
-  projectId: "PALITAN_ITO",
-  storageBucket: "PALITAN_ITO.firebasestorage.app",
-  messagingSenderId: "PALITAN_ITO",
-  appId: "PALITAN_ITO",
+  apiKey: "AIzaSyDyLiviqKA5YGKChtneU6IZqSeq8kYEW2A",
+  authDomain: "game-store-webpage.firebaseapp.com",
+  projectId: "game-store-webpage",
+  storageBucket: "game-store-webpage.firebasestorage.app",
+  messagingSenderId: "324511328721",
+  appId: "1:324511328721:web:5e756c76280022ae9a58f0",
 };
